@@ -1,0 +1,27 @@
+﻿@page
+@model Dashboard.Pages.HomeAssistantModel
+@using Dashboard.Models
+@{
+    Layout = "_HomeAssistantLayout";
+}
+
+<div class="p-2">
+    @foreach (ServiceEntry service in Model.Services)
+    {
+        ServiceStatus? status = Model.Statuses.GetValueOrDefault(service.Name);
+        string badgeClass = status == null ? "bg-secondary" : status.IsOnline ? "bg-success" : "bg-danger";
+        string badgeText = status == null ? "Pending" : status.IsOnline ? "Online" : "Offline";
+        string faviconSrc = service.FaviconUrl ?? $"/Favicon?url={Uri.EscapeDataString(service.Url)}";
+
+        <a href="@service.Url" target="_blank" rel="noopener noreferrer" class="d-flex align-items-center gap-3 p-2 mb-1 rounded text-decoration-none text-reset" style="border: 1px solid rgba(255,255,255,0.1);">
+            <img src="@faviconSrc" width="16" height="16" onerror="this.style.display='none'" />
+            <span class="text-secondary" style="width: 6rem;">@service.Device</span>
+            <span class="flex-grow-1 ms-4">@service.Name</span>
+            @if (status != null)
+            {
+                <span class="text-secondary small">@status.ResponseTimeMs ms</span>
+            }
+            <span class="badge @badgeClass">@badgeText</span>
+        </a>
+    }
+</div>
