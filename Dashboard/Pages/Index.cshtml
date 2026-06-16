@@ -7,7 +7,7 @@
     Dictionary<string, List<ServiceEntry>> multiService = Model.ServicesByDevice.Where(d => d.Value.Count > 1).OrderBy(d => d.Key).ToDictionary(d => d.Key, d => d.Value.OrderBy(s => s.Name).ToList());
 }
 
-<div class="mb-5">
+<div class="mb-5 d-none d-md-block">
     @if (Model.DnsUpdates.Any())
     {
         <div class="row g-3">
