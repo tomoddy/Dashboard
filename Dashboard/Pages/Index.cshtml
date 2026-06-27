@@ -28,7 +28,7 @@
 <div class="row g-3 mb-5">
     @foreach (KeyValuePair<string, List<ServiceEntry>> device in singleService)
     {
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-3">
             <div class="mb-2">
                 <span class="fw-medium">@device.Key</span>
                 <span class="text-secondary small ms-2">@device.Value.First().LocalIp</span>
@@ -53,7 +53,7 @@
         <div class="row g-3">
             @foreach (ServiceEntry service in device.Value)
             {
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-3">
                     @await Html.PartialAsync("_ServiceCard", new ServiceCard
                     {
                         Service = service,
