@@ -22,7 +22,7 @@ public class GitHubBadgeService(HttpClient httpClient, IConfiguration configurat
 
         if (memoryCache.TryGetValue(cacheKey, out (string Message, string Color) cached)) return cached;
 
-        string token = configuration["GitHub:Token"] ?? string.Empty;
+        string token = configuration["GitHub:AccessToken"] ?? string.Empty;
         string url = $"https://api.github.com/repos/{ownerRepo}/actions/workflows/{workflowFile}/runs?branch={branch}&per_page=1";
 
         using HttpRequestMessage request = new(HttpMethod.Get, url);
