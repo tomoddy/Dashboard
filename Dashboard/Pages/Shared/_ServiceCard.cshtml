@@ -36,7 +36,9 @@
             <p class="text-secondary small mb-0">@Model.Service.Type</p>
             @if (!string.IsNullOrEmpty(Model.Service.RepoName))
             {
-                <img src="https://img.shields.io/github/actions/workflow/status/@(Model.Service.RepoName)/deploy.yml?branch=master&style=flat-square&label=deploy&labelColor=212529&logo=github&logoColor=8b949e" alt="Deploy status">
+                string innerUrl = $"https://dashboard.tzer0m.co.uk/Badge?repo={Model.Service.RepoName}";
+                string badgeUrl = $"https://img.shields.io/endpoint?url={Uri.EscapeDataString(innerUrl)}&style=flat-square&labelColor=212529&logo=github&logoColor=8b949e";
+                <img src="@badgeUrl" alt="Deploy status">
             }
         </div>
         <p class="small fs-6 mb-0 text-secondary">@displayUrl</p>
