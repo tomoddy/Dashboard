@@ -46,6 +46,15 @@ public sealed class ApiController(HealthCheckService healthCheckService, GitHubB
             result.Add(new ServiceInformation
             {
                 Name = service.Name,
+                Url = service.Url,
+                Type = service.Type,
+                Access = service.Access,
+                Device = service.Device,
+                LocalIp = service.LocalIp,
+                LocalPort = service.LocalPort,
+                AuthRequired = service.AuthRequired,
+                FaviconUrl = service.FaviconUrl,
+                RepoName = service.RepoName,
                 Health = health,
                 DeployBadge = deployBadge
             });
